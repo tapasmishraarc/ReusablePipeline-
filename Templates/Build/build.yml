@@ -23,6 +23,12 @@ steps:
       verbose: ${{parameters.verbose}}
       codeRootDir: ${{parameters.codeRootDir}}
 
+- ${{ if eq(parameters.buildType, 'dotnet') }}:
+
+  - template: dotnet/build-dotnet.yml
+    parameters:
+      codeRootDir: ${{parameters.codeRootDir}}
+
 - ${{ if eq(parameters.buildType, 'golang') }}:
 
   - template: golang/build-go.yml
